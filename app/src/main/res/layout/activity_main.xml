@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.vladislav.rea_attention.MainActivity">
+    <RelativeLayout
+        android:layout_width="344dp"
+        android:layout_height="495dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/email_Text_View"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="178dp"
+            android:text="Email"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="9dp"
+            android:layout_marginStart="9dp" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/email_Text_View"
+            android:layout_toEndOf="@+id/email_Text_View"
+            android:layout_toRightOf="@+id/email_Text_View"
+            android:ems="10"
+            android:inputType="textPassword"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <Button
+            android:id="@+id/registration_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/password_Text_View"
+            android:text="Зарегистрироваться"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <Button
+            android:id="@+id/sign_in_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Вход"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp"
+            android:layout_alignBaseline="@+id/registration_Button"
+            android:layout_alignBottom="@+id/registration_Button"
+            android:layout_alignRight="@+id/password"
+            android:layout_alignEnd="@+id/password" />
+
+        <TextView
+            android:id="@+id/password_Text_View"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_alignBaseline="@+id/password"
+            android:layout_alignBottom="@+id/password"
+            android:layout_toLeftOf="@+id/password"
+            android:layout_toStartOf="@+id/password"
+            android:text="Password"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/email_Text_View"
+            android:layout_alignBottom="@+id/email_Text_View"
+            android:layout_toEndOf="@+id/email_Text_View"
+            android:layout_toRightOf="@+id/email_Text_View"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/CircularProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:theme="@style/CircularProgress"
+            android:visibility="invisible" />
+
+    </RelativeLayout>
+    </RelativeLayout>

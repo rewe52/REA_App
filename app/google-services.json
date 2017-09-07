@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "886697561536",
+    "firebase_url": "https://reaattention.firebaseio.com",
+    "project_id": "reaattention",
+    "storage_bucket": "reaattention.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:886697561536:android:1fe4761e05d656c9",
+        "android_client_info": {
+          "package_name": "com.example.vladislav.rea_attention"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "886697561536-9cqtrrktt75fmi4l065ijto41r3le2r2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.vladislav.rea_attention",
+            "certificate_hash": "25ed59f95c9c43f16e64616bfadc38f2da33c21c"
+          }
+        },
+        {
+          "client_id": "886697561536-qhlsode4ul5og3148h9m79qv8o1p21ia.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxhSMeLm_BzdvGWywrh2fKQOeez3X-sEg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "886697561536-qhlsode4ul5og3148h9m79qv8o1p21ia.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
