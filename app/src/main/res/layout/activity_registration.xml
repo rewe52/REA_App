@@ -1,27 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:theme="@android:style/Theme.Light.NoTitleBar"
+    android:background="@drawable/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.vladislav.rea_attention.RegistrationActivity">
+    tools:context="com.example.vladislav.rea_attention.Activity.RegistrationActivity">
 
-    <RelativeLayout
-        android:layout_width="344dp"
-        android:layout_height="495dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+        <Button
+            android:id="@+id/backButton"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="108dp"
+            android:text="@string/back"
+            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+            android:textColor="@color/textColor"
+            android:textSize="16dp"
+            tools:layout_editor_absoluteX="216dp"
+            tools:layout_editor_absoluteY="388dp"
+            android:layout_marginRight="13dp"
+            android:layout_marginEnd="13dp"
+            android:layout_above="@+id/registrationProgressBar"
+            android:layout_alignRight="@+id/passwordConfirmRegistration"
+            android:layout_alignEnd="@+id/passwordConfirmRegistration" />
 
         <TextView
             android:id="@+id/TextViewConfirmPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/passwordConfirmRegistration"
-            android:layout_marginEnd="18dp"
-            android:layout_marginRight="18dp"
-            android:layout_toLeftOf="@+id/passwordConfirmRegistration"
-            android:layout_toStartOf="@+id/passwordConfirmRegistration"
-            android:text="Confirm \n password"
+            android:layout_alignBaseline="@+id/passwordConfirmRegistration"
+            android:layout_alignBottom="@+id/passwordConfirmRegistration"
+            android:layout_alignEnd="@+id/textViewPassword"
+            android:layout_alignRight="@+id/textViewPassword"
+            android:text="@string/confirm_n_password"
+            android:textColor="@color/textColor"
+            android:textSize="16dp"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="202dp" />
 
@@ -41,10 +55,15 @@
             android:id="@+id/textViewEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/registrationEmail"
             android:layout_alignBottom="@+id/registrationEmail"
-            android:layout_alignLeft="@+id/textViewPassword"
-            android:layout_alignStart="@+id/textViewPassword"
-            android:text="Email"
+            android:layout_alignEnd="@+id/TextViewConfirmPassword"
+            android:layout_alignRight="@+id/TextViewConfirmPassword"
+            android:layout_marginEnd="7dp"
+            android:layout_marginRight="7dp"
+            android:text="@string/email"
+            android:textColor="@color/textColor"
+            android:textSize="16dp"
             tools:layout_editor_absoluteX="10dp"
             tools:layout_editor_absoluteY="120dp" />
 
@@ -64,27 +83,16 @@
             android:id="@+id/passwordConfirmRegistration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/registrationButtonActivity"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginBottom="72dp"
+            android:layout_marginBottom="22dp"
             android:layout_marginEnd="14dp"
             android:layout_marginRight="14dp"
             android:ems="10"
             android:inputType="textPassword"
             tools:layout_editor_absoluteX="146dp"
-            tools:layout_editor_absoluteY="176dp" />
-
-        <Button
-            android:id="@+id/backButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
+            tools:layout_editor_absoluteY="176dp"
+            android:layout_above="@+id/backButton"
             android:layout_alignParentRight="true"
-            android:text="Назад"
-            tools:layout_editor_absoluteX="216dp"
-            tools:layout_editor_absoluteY="388dp" />
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:id="@+id/textViewPassword"
@@ -92,34 +100,42 @@
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/passwordRegistration"
             android:layout_alignBottom="@+id/passwordRegistration"
-            android:layout_alignLeft="@+id/TextViewConfirmPassword"
-            android:layout_alignStart="@+id/TextViewConfirmPassword"
-            android:text="Password"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:text="@string/password"
+            android:textColor="@color/textColor"
+            android:textSize="16dp"
             tools:layout_editor_absoluteX="33dp"
             tools:layout_editor_absoluteY="160dp" />
 
         <Button
             android:id="@+id/registrationButtonActivity"
-            android:layout_width="390dp"
-            android:layout_height="60dp"
-            android:layout_above="@+id/backButton"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="50dp"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:onClick="onClick"
-            android:text="Зарегистрироваться"
+            android:text="@string/registration"
+            android:textColor="@color/textColor"
+            android:textSize="16dp"
             tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="282dp" />
+            tools:layout_editor_absoluteY="282dp"
+            android:layout_below="@+id/passwordConfirmRegistration"
+            android:layout_alignLeft="@+id/textViewPassword"
+            android:layout_alignStart="@+id/textViewPassword" />
 
         <ProgressBar
             android:id="@+id/registrationProgressBar"
             style="@style/CircularProgress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/passwordConfirmRegistration"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="8dp"
+            android:layout_alignStart="@+id/passwordConfirmRegistration"
+            android:layout_marginBottom="13dp"
+            android:layout_marginLeft="42dp"
+            android:layout_marginStart="42dp"
             android:visibility="invisible" />
-    </RelativeLayout>
 
-</android.support.constraint.ConstraintLayout>
+    </RelativeLayout>

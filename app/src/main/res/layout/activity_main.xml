@@ -1,32 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.vladislav.rea_attention.MainActivity">
-    <RelativeLayout
-        android:layout_width="344dp"
-        android:layout_height="495dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true">
+    android:theme="@android:style/Theme.Light.NoTitleBar"
+    android:background="@drawable/background"
+    tools:context="com.example.vladislav.rea_attention.Activity.MainActivity"
+    android:id="@+id/relativeLayout"
+    android:backgroundTintMode="multiply"
+    tools:layout_editor_absoluteX="8dp"
+    tools:layout_editor_absoluteY="8dp"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentStart="true">
+
+        <CheckBox
+            android:id="@+id/Remember_Me"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/password"
+            android:checked="true"
+            android:scaleX="0.70"
+            android:scaleY="0.70"
+            android:text="@string/remember_me"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textColor="@android:color/background_light"
+            android:textColorHighlight="@color/colorAccent"
+            android:textColorHint="@android:color/background_light"
+            android:textSize="18dp" />
 
         <TextView
             android:id="@+id/email_Text_View"
+            style="@style/mainText"
             android:layout_width="100dp"
             android:layout_height="35dp"
-            android:layout_marginTop="178dp"
-            android:text="Email"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp"
-            android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginLeft="9dp"
-            android:layout_marginStart="9dp" />
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="21dp"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="200dp"
+            android:text="@string/email"
+            android:textSize="16dp"
+            android:textColor="@android:color/background_light"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
 
         <EditText
             android:id="@+id/password"
@@ -42,41 +62,55 @@
 
         <Button
             android:id="@+id/registration_Button"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/password_Text_View"
-            android:text="Зарегистрироваться"
+            android:layout_alignBaseline="@+id/sign_in_Button"
+            android:layout_alignBottom="@+id/sign_in_Button"
+            android:layout_alignLeft="@+id/password_Text_View"
+            android:layout_alignStart="@+id/password_Text_View"
+            android:elevation="18dp"
+            android:text="@string/registration"
+            android:textColor="@color/textColor"
+            android:textSize="16dp"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="0dp" />
 
         <Button
             android:id="@+id/sign_in_Button"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Вход"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp"
-            android:layout_alignBaseline="@+id/registration_Button"
-            android:layout_alignBottom="@+id/registration_Button"
+            android:layout_alignEnd="@+id/password"
             android:layout_alignRight="@+id/password"
-            android:layout_alignEnd="@+id/password" />
+            android:layout_below="@+id/password_Text_View"
+            android:layout_marginTop="72dp"
+            android:elevation="16dp"
+            android:text="@string/Enter"
+            android:textColor="@color/textColor"
+            android:textColorLink="@color/colorAccent"
+            android:textSize="16dp"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp" />
 
         <TextView
             android:id="@+id/password_Text_View"
+            style="@style/mainText"
             android:layout_width="100dp"
             android:layout_height="30dp"
             android:layout_alignBaseline="@+id/password"
             android:layout_alignBottom="@+id/password"
             android:layout_toLeftOf="@+id/password"
             android:layout_toStartOf="@+id/password"
-            android:text="Password"
+            android:text="@string/password"
+            android:textSize="16dp"
+            android:textColor="@android:color/background_light"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="0dp" />
 
         <EditText
             android:id="@+id/email"
+            style="?attr/editTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/email_Text_View"
@@ -85,6 +119,7 @@
             android:layout_toRightOf="@+id/email_Text_View"
             android:ems="10"
             android:inputType="textEmailAddress"
+            android:textStyle="italic"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="0dp" />
 
@@ -95,8 +130,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="27dp"
             android:theme="@style/CircularProgress"
             android:visibility="invisible" />
-
-    </RelativeLayout>
     </RelativeLayout>

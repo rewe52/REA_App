@@ -8,7 +8,7 @@ import android.content.SharedPreferences;
 
 public class EditSharedPreferences {
 
-    private SharedPreferences.Editor editor;
+    SharedPreferences.Editor editor;
 
     public void addPreferences(SharedPreferences mSettings, String APP_PREFERENCES, String preferences){
         editor = mSettings.edit();

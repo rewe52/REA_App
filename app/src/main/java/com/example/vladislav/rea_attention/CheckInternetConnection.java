@@ -1,61 +1,43 @@
 package com.example.vladislav.rea_attention;
 
-import android.app.Activity;
+import android.util.Log;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
 import java.net.InetAddress;
-import java.net.URL;
-import java.net.UnknownHostException;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Enumeration;
 
 /**
  * Created by Vladislav on 07.09.2017.
  */
 
 public class CheckInternetConnection {
-    private boolean isOnline;
 
-     /*   new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Boolean result = false;
-                HttpURLConnection con = null;
+    private static final String TAG = "ip_adress_exception_get";
+
+    private static String getIpAdress() {
+        String result = null;
                 try {
-                    con = (HttpURLConnection) new URL("http://google.com/").openConnection();
-                    con.setRequestMethod("HEAD");
-                    result = (con.getResponseCode() == HttpURLConnection.HTTP_OK);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                } finally {
-                    if (con != null) {
-                        try {
-                            con.disconnect();
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                    for (Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces(); interfaces.hasMoreElements();) {
+                        NetworkInterface iface = interfaces.nextElement();
+                        for (Enumeration<InetAddress> adresses = iface.getInetAddresses(); adresses.hasMoreElements();) {
+                            InetAddress ip = adresses.nextElement();
+                            if (!ip.isLoopbackAddress())
+                                result = ip.getHostAddress();
                         }
                     }
+                } catch (SocketException e) {
+                    Log.d(TAG, e.getMessage());
                 }
-                if(result){
-                     isOnline = true;
-                }else
-                    isOnline = false;
-            }
-        });
-
-        if(isOnline){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return result;
     }
 
-    */
+    public boolean isReallyOnline(){
+        if(!getIpAdress().isEmpty()){
+            return true;
+        }else
+            return false;
+
+    }
 
 }

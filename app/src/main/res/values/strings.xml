@@ -1,3 +1,16 @@
 <resources>
-    <string name="app_name">REA_Attention</string>
+    <string name="app_name">Активный гражданин</string>
+    <string name="title_activity_admin_">admin_Activity</string>
+    <string name="studyProblems"> Проблемы с обучением </string>
+    <string name="kitchenProblems"> Проблемы со столовыми </string>
+    <string name="teachersProblems"> Проблемы с преподавателями </string>
+    <string name="email">Email</string>
+    <string name="registration">ЗАРЕГИСТРИРОВАТЬСЯ</string>
+    <string name="Enter">ВХОД</string>
+    <string name="password">Password</string>
+    <string name="remember_me">Запомнить меня</string>
+    <string name="back">Назад</string>
+    <string name="registation_reg">Зарегистрироваться</string>
+    <string name="confirm_n_password">Confirm</string>
+
 </resources>
