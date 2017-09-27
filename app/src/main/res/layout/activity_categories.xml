@@ -8,61 +8,50 @@
     tools:context="com.example.vladislav.rea_attention.Activity.Categories">
 
 
-        <Button
-            android:id="@+id/problemsWithTeachersBut"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="344dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/toolbar2"
-            android:layout_centerHorizontal="true"
-            android:text="Проблемы с преподавателями"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textColor="@android:color/holo_blue_dark"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="110dp" />
+    <ListView
+        android:id="@+id/all_problems_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/SignOutBut" />
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/holo_blue_dark"
-            android:elevation="0dp"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="0dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+    <Button
+        android:id="@+id/SignOutBut"
+        style="@android:style/Widget.Button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="14dp"
+        android:background="@mipmap/exit"
+        android:textColor="@color/colorPrimaryDark"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="11dp"
+        android:layout_marginEnd="11dp" />
 
+    <Button
+        android:id="@+id/add_problem_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="28dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/plus_button"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/SignOutBut"
+        android:layout_alignEnd="@+id/SignOutBut" />
 
-        <Button
-            android:id="@+id/SignOutBut"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/toolbar2"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:text="Sign Out"
-            android:textColor="@color/colorPrimaryDark"
-            tools:layout_editor_absoluteY="0dp"
-            tools:layout_editor_absoluteX="0dp" />
+    <ListView
+        android:id="@+id/add_problem_list_view"
+        style="@style/ShapeRadius"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignBottom="@+id/add_problem_button"
+        android:layout_marginBottom="42dp"
+        android:layout_toLeftOf="@+id/SignOutBut"
+        android:layout_toStartOf="@+id/SignOutBut"
+        android:background="@color/textColor"
+        android:visibility="invisible" />
 
-        <TextView
-            android:id="@+id/login_name_edit"
-            style="@style/AlertDialog.AppCompat.Light"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:textColor="@color/textColor"
-            android:textSize="18sp"
-            android:textStyle="italic"
-            android:layout_alignBaseline="@+id/SignOutBut"
-            android:layout_alignBottom="@+id/SignOutBut"
-            android:layout_toLeftOf="@+id/SignOutBut"
-            android:layout_toStartOf="@+id/SignOutBut"
-            tools:layout_editor_absoluteY="0dp"
-            tools:layout_editor_absoluteX="0dp" />
-    </RelativeLayout>
+</RelativeLayout>

@@ -16,19 +16,18 @@
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".Activity.MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/BackgroundTheme">
-        </activity>
+            android:theme="@style/BackgroundTheme"></activity>
         <activity
             android:name=".Activity.RegistrationActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/BackgroundTheme">
-        </activity>
+            android:theme="@style/BackgroundTheme"></activity>
         <activity
             android:name=".Activity.admin_Activity"
             android:label="@string/title_activity_admin_"
@@ -37,8 +36,10 @@
         <activity
             android:name=".Activity.Categories"
             android:screenOrientation="portrait"
-            android:theme="@style/BackgroundTheme">
-        </activity>
+            android:theme="@style/BackgroundTheme"></activity>
+        <activity
+            android:name=".Activity.sendEmailActivity"
+            android:theme="@style/BackgroundTheme"></activity>
     </application>
 
 </manifest>

@@ -29,24 +29,31 @@ import static com.example.vladislav.rea_attention.R.layout;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static final String TAG = "activity_main";
+
+    //region SharedPreferences
     private static final String APP_PREFERENCES_PASSWORD = "Password";
     public static final String APP_PREFERENCES_USER = "User";
+    //endregion
 
+    //region Firebase classes
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListner;
+    private DataBase db = new DataBase();
+//endregion
 
-
+    //region Screen elements
     private TextView email;
     private TextView password;
     private CheckBox remember_me;
     private ProgressBar progressBar;
+//endregion
 
-
+    //region SharedPreferences objects
     SharedPreferences mSettings;
-
     EditSharedPreferences editSharedPreferences = new EditSharedPreferences();
-
     ChangeStateProgressBar changeStateProgressBar = new ChangeStateProgressBar();
+    //endregion
+
 
     //CheckInternetConnection checkInternetConnection = new CheckInternetConnection();
 
@@ -54,23 +61,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_main);
 
-
+        // get sharedPreferences object
         mSettings = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+
 
         mAuth = FirebaseAuth.getInstance();     // get instance of fireBase
 
-        DataBase db = new DataBase();
+
 
         if(mAuth.getCurrentUser()!=null){
-            db.connectToDataBase();
             if(checkAdmin(mAuth.getCurrentUser().getEmail())){
                 Log.d(TAG, "Переход на страницу администратора");
-                Intent intent = new Intent(MainActivity.this, admin_Activity.class);
-                startActivity(intent);
+                startActivity(new Intent(MainActivity.this, admin_Activity.class));
             }else{
                 Log.d(TAG,"Переход на страницу пользователя");
-                Intent intent = new Intent(MainActivity.this, Categories.class);
-                startActivity(intent);
+                startActivity(new Intent(MainActivity.this, Categories.class));
             }
         }
 
@@ -161,10 +166,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void signIn(){
-        if ((!email.getText().toString().equals(null)
-                && !email.getText().toString().equals(""))
-                || (!password.getText().toString().equals(null)
-                && !password.getText().toString().equals(""))) {
+        if (!email.getText().toString().equals("")
+                || !password.getText().toString().equals("")) {
 
             //start progress bar visibility, when we do
             // hard piece of code
@@ -178,29 +181,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-
                             //if task is successfull need to go to another intent
                             if (task.isSuccessful()) {
+                                //region delete Email and password from settings
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        editSharedPreferences.deleteStringPreferences(mSettings, APP_PREFERENCES_PASSWORD);
+                                        editSharedPreferences.deleteStringPreferences(mSettings,APP_PREFERENCES_USER);
+                                    }
+                                });
 
+                    //endregion
 
-
-                                //delete from settings
-                                editSharedPreferences.deletePreferences(mSettings, APP_PREFERENCES_PASSWORD);
-                                editSharedPreferences.deletePreferences(mSettings,APP_PREFERENCES_USER);
-
+                                // не забыть удалить запоминалку пароля!
+                                //region Save email and password
                                 if(remember_me.isChecked()) {
-                                    // remember me
-                                    editSharedPreferences.addPreferences(mSettings, APP_PREFERENCES_USER, email.getText().toString());
-                                    editSharedPreferences.addPreferences(mSettings, APP_PREFERENCES_PASSWORD, password.getText().toString());
+                                    editSharedPreferences.addStringPreferences(mSettings, APP_PREFERENCES_USER, email.getText().toString());
+                                    editSharedPreferences.addStringPreferences(mSettings, APP_PREFERENCES_PASSWORD, password.getText().toString());
                                 }
+                                //endregion
+
                                 // check email for administrator
                                 // email, if administrator entered
                                 // start entent Administrator activity
+                                //region Start new activity (admin or usual activity)
                                 if (checkAdmin(email.getText().toString())) {
 
                                     //start admin activity
-                                    Intent intent = new Intent(MainActivity.this, admin_Activity.class);
-                                    startActivity(intent);
+                                    startActivity(new Intent(MainActivity.this, admin_Activity.class));
 
                                     // hide progress bar
                                     changeStateProgressBar.hideProgressBar(progressBar);
@@ -211,7 +220,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 } else{
 
                                     // if not admin entered, start personal activity
-                                    Log.d(TAG, "Succesful enter");
+                                    Log.d(TAG, "Успешный вход!");
 
                                     //start new activity
                                     Intent intent = new Intent(MainActivity.this, Categories.class);
@@ -223,6 +232,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     email.setText("");
                                     password.setText("");
                                 }
+                                //endregion
                             }
                         }
                     })
@@ -247,7 +257,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private boolean checkAdmin(String email){
         if(email.equals("admin@rea.ru")){
-
             return true;
         }else{
 
