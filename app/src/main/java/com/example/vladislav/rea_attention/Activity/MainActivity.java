@@ -29,29 +29,25 @@ import static com.example.vladislav.rea_attention.R.layout;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static final String TAG = "activity_main";
-
+    public static final String APP_PREFERENCES_USER = "User";
     //region SharedPreferences
     private static final String APP_PREFERENCES_PASSWORD = "Password";
-    public static final String APP_PREFERENCES_USER = "User";
     //endregion
-
-    //region Firebase classes
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListner;
-    private DataBase db = new DataBase();
-//endregion
-
-    //region Screen elements
-    private TextView email;
-    private TextView password;
-    private CheckBox remember_me;
-    private ProgressBar progressBar;
-//endregion
-
     //region SharedPreferences objects
     SharedPreferences mSettings;
     EditSharedPreferences editSharedPreferences = new EditSharedPreferences();
     ChangeStateProgressBar changeStateProgressBar = new ChangeStateProgressBar();
+//endregion
+    //region Firebase classes
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListner;
+    private DataBase db = new DataBase();
+    //region Screen elements
+    private TextView email;
+//endregion
+    private TextView password;
+    private CheckBox remember_me;
+    private ProgressBar progressBar;
     //endregion
 
 
@@ -78,7 +74,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(MainActivity.this, Categories.class));
             }
         }
-
 
 
         progressBar = (ProgressBar)findViewById(id.progressBar);

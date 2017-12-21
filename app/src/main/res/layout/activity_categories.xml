@@ -2,9 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/e"
-    android:background="@drawable/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context="com.example.vladislav.rea_attention.Activity.Categories">
 
 
@@ -12,35 +12,37 @@
         android:id="@+id/all_problems_list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/SignOutBut" />
+        android:layout_below="@+id/SignOutBut"
+        android:animateLayoutChanges="true"
+        android:clickable="true" />
 
     <Button
         android:id="@+id/SignOutBut"
         style="@android:style/Widget.Button"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="11dp"
+        android:layout_marginRight="11dp"
         android:layout_marginTop="14dp"
         android:background="@mipmap/exit"
         android:textColor="@color/colorPrimaryDark"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="11dp"
-        android:layout_marginEnd="11dp" />
+        tools:layout_editor_absoluteY="0dp" />
 
     <Button
         android:id="@+id/add_problem_button"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_alignEnd="@+id/SignOutBut"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/SignOutBut"
         android:layout_marginBottom="28dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:background="@drawable/plus_button"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/SignOutBut"
-        android:layout_alignEnd="@+id/SignOutBut" />
+        android:background="@drawable/plus_button" />
 
     <ListView
         android:id="@+id/add_problem_list_view"

@@ -8,17 +8,16 @@ public class UsersMessage {
      public String id;
      public String type;
      public String text;
+     public String typeOfProblem;
 
     public UsersMessage(){
 }
-
- public UsersMessage(String id, String type, String text){
+// не забыть добавить type of problem
+ public UsersMessage(String id, String type, String text, String typeOfProblem){
     this.id = id;
     this.type = type;
     this.text = text;
+     this.typeOfProblem = typeOfProblem;
 }
-
-
-
 }
 

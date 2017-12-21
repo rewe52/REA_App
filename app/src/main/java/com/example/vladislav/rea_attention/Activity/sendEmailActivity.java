@@ -1,129 +1,87 @@
 package com.example.vladislav.rea_attention.Activity;
 
-import android.content.SharedPreferences;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.Toast;
 
+import com.example.vladislav.rea_attention.DataBase;
 import com.example.vladislav.rea_attention.R;
 import com.example.vladislav.rea_attention.UsersMessage;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
+
+import java.util.ArrayList;
 
 public class sendEmailActivity extends AppCompatActivity {
 
-    private SharedPreferences mSettings;
-    private final String USER_PROBLEM = "CATEGORIES";
-
-    private final String USERS_CHILD = "Users";
-    private final String USER_MESSAGES= "Messages";
-    private final String USER_MESSAGE_TYPE= "MessageType";
-    private final String USER_MESSAGE_TEXT= "MessageText";
-
-    private String[] categories = {
-            "Проблемы с преподавателями",
-            "Проблемы в столовой",
-            "Проблемы с общежитием",
-            "Другое",
-            "Для проверки",
-            "Для проверки",
-            "Для проверки",
-            "Для проверки",
-            "Для проверки",
-            "Для проверки",
-            "Для проверки"
-    };
-
+    private static final String TAG = "ToChtoPrishloISFB";
+    DatabaseReference mDataBase;
+    FirebaseAuth mAuth;
+    DataBase dataBaseFunctions = new DataBase();
     private EditText edit_message;
     private Button send_message;
     private Switch change_type_message;
-    FirebaseDatabase mDataBase;
-    DatabaseReference mRef;
-    FirebaseAuth mAuth;
-
-
+    private ArrayList<String> type_of_problem;
+    private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_email);
 
-        mDataBase = FirebaseDatabase.getInstance();
-        mRef = mDataBase.getReference();
+        mDataBase = FirebaseDatabase.getInstance().getReferenceFromUrl("https://reaattention.firebaseio.com/");
         mAuth.getInstance();
 
+        type_of_problem = new ArrayList<>();
+        type_of_problem.add("Проблемы с учителями");
+        type_of_problem.add("Проблемы в столовой");
+        type_of_problem.add("Другое");
 
-        edit_message = (EditText)findViewById(R.id.edit_message);
-        send_message = (Button)findViewById(R.id.send_message);
-        change_type_message = (Switch)findViewById(R.id.change_type_message);
+        edit_message = (EditText) findViewById(R.id.edit_message);
+        send_message = (Button) findViewById(R.id.send_message);
+        change_type_message = (Switch) findViewById(R.id.change_type_message);
+        spinner = (Spinner) findViewById(R.id.spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, type_of_problem);
+        spinner.setAdapter(adapter);
 
 
         send_message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String uniqeID = mRef.push().getKey().toString();
-                String result = "";
-                if(change_type_message.isChecked()) {
-                    result = "OPEN";
-                }else
-                    {
+                if (edit_message.getText().toString().equals("")) {
+                    Toast.makeText(sendEmailActivity.this,
+                            "Вы не можете отправлять пустое сообщение", Toast.LENGTH_LONG).show();
+                } else {
+                    String uniqeID = dataBaseFunctions.getUniqueKeyToMessage(mDataBase, mAuth);
+                    String result = "";
+                    if (change_type_message.isChecked()) {
+                        result = "OPEN";
+                    } else {
                         result = "CLOSE";
                     }
-                String message_text = edit_message.getText().toString();
-                UsersMessage message = new UsersMessage(uniqeID, result, message_text);
-                sendDataToFireBase(message, mAuth);
+                    String message_text = edit_message.getText().toString();
+                    UsersMessage message = new UsersMessage(uniqeID, result, message_text, type_of_problem.get(spinner.getSelectedItemPosition()));
+                    if (dataBaseFunctions.sendDataToFireBase(message, mAuth, mDataBase)) {
+                        startActivity(new Intent(sendEmailActivity.this, Categories.class));
+                    }
+                }
             }
+
         });
 
     }
 
-    private void sendDataToFireBase(UsersMessage message, FirebaseAuth mAuth){
-
-        String current_user = mAuth.getInstance().getCurrentUser().getUid();
-                //mRef.child(USERS_CHILD).child(currentUser);
-                //mRef.child(USERS_CHILD).child(currentUser).child(USER_MESSAGES).child(message.id);
-                mRef.child(USERS_CHILD).child(current_user).child(USER_MESSAGES).child(message.id).child(USER_MESSAGE_TYPE).setValue(message.type);
-                mRef.child(USERS_CHILD).child(current_user).child(USER_MESSAGES).child(message.id).child(USER_MESSAGE_TEXT).setValue(message.text);
-
-        }
-
-        private void takeDataFromFirebase(){
-            Query my_message= mRef.child(USERS_CHILD)
-                    .orderByChild(USER_MESSAGES);
-            my_message.addChildEventListener(new ChildEventListener() {
-                @Override
-                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
-                }
-
-                @Override
-                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-                }
-
-                @Override
-                public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-                }
-
-                @Override
-                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-        }
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(sendEmailActivity.this, Categories.class));
+    }
 }
